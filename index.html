@@ -715,10 +715,11 @@
         </div>
     </div>
 
-    <!-- Keyboard hint (desktop only) -->
+    <!-- Keyboard hint (desktop only) 
     <div class="keyboard-hint">
         Usa las teclas <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> o <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> para mover a Lia
     </div>
+     -->
 
     <!-- Left Column: Posición, Navegación, Trail y Zoom -->
     <div class="left-column">
@@ -748,8 +749,8 @@
 
         <!-- Zoom Controls -->
         <div class="zoom-controls">
+             <button class="zoom-btn" id="zoomOut" aria-label="Alejar">−</button>
             <button class="zoom-btn" id="zoomIn" aria-label="Acercar">+</button>
-            <button class="zoom-btn" id="zoomOut" aria-label="Alejar">−</button>
         </div>
     </div>
 
@@ -777,8 +778,7 @@
         </div>
     </div>
 
-    <!-- Nav back -->
-    <a href="leccion-08-proyecto-final.html" class="nav-back">← VOLVER</a>
+   
 
     <script>
         // =============================================
@@ -1116,6 +1116,7 @@
         // BOGOTÁ LANDMARK MARKERS & PANEL
         // =============================================
         const landmarks = [
+            { lat: 4.69390, lng: -74.07870, name: 'MASIN', emoji: '✨' },
             { lat: 4.5981, lng: -74.0760, name: 'Plaza de Bolívar', emoji: '🏛️' },
             { lat: 4.6052, lng: -74.0554, name: 'Monserrate', emoji: '⛪' },
             { lat: 4.6015, lng: -74.0722, name: 'Museo del Oro', emoji: '🪙' },
