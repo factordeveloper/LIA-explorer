@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Lección 9: Explorador Satelital - Lia</title>
-    
+    <title>Lia Explorer</title>
+    <link rel="icon" href="lia_avatar.png" type="image/x-icon">
     <link rel="stylesheet" href="leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="leaflet.js"></script>
@@ -1116,7 +1116,7 @@
         // BOGOTÁ LANDMARK MARKERS & PANEL
         // =============================================
         const landmarks = [
-            { lat: 4.69390, lng: -74.07870, name: 'MASIN', emoji: '✨' },
+            { lat: 4.69390, lng: -74.07870, name: 'MASIN', image: 'masin-ico.png' },
             { lat: 4.5981, lng: -74.0760, name: 'Plaza de Bolívar', emoji: '🏛️' },
             { lat: 4.6052, lng: -74.0554, name: 'Monserrate', emoji: '⛪' },
             { lat: 4.6015, lng: -74.0722, name: 'Museo del Oro', emoji: '🪙' },
@@ -1128,27 +1128,43 @@
         const landmarksListContainer = document.getElementById('landmarksList');
 
         landmarks.forEach(lm => {
+            const displayContent = lm.image 
+                ? `<img src="${lm.image}" style="width: 24px; height: 24px; object-fit: contain;" />` 
+                : lm.emoji;
+
             // Map Marker
             const icon = L.divIcon({
                 html: `<div style="
                     font-size: 20px;
                     text-shadow: 0 0 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
                     filter: drop-shadow(0 0 4px rgba(57,229,167,0.5));
-                ">${lm.emoji}</div>`,
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">${displayContent}</div>`,
                 className: '',
                 iconSize: [24, 24],
                 iconAnchor: [12, 12]
             });
 
+            const popupLabel = lm.image 
+                ? `<img src="${lm.image}" style="width: 18px; vertical-align: middle; margin-right: 4px;" />${lm.name}`
+                : `${lm.emoji} ${lm.name}`;
+
             const marker = L.marker([lm.lat, lm.lng], { icon: icon })
                 .addTo(mapa)
-                .bindPopup(`<div style="text-align:center;"><strong>${lm.emoji} ${lm.name}</strong></div>`);
+                .bindPopup(`<div style="text-align:center;"><strong>${popupLabel}</strong></div>`);
 
             // Panel Item
             const itemDiv = document.createElement('div');
             itemDiv.className = 'landmark-item';
+            
+            const panelIcon = lm.image 
+                ? `<img src="${lm.image}" style="width: 18px; height: 18px; object-fit: contain;" />` 
+                : lm.emoji;
+
             itemDiv.innerHTML = `
-                <div class="emoji">${lm.emoji}</div>
+                <div class="emoji">${panelIcon}</div>
                 <div class="name">${lm.name}</div>
             `;
             itemDiv.addEventListener('click', () => {
